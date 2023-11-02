@@ -52,10 +52,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Homepage(navController: NavController, context: Context = LocalContext.current){
-    //var listUser: List<UserRespon> = remember
     val listUser = remember { mutableStateListOf<UserRespon>()}
-    //var listUser: List<UserRespon> by remember { mutableStateOf(List<UserRespon>()) }
-    var baseUrl = "http://10.0.2.2:1337/api/"
+    var baseUrl = "http://192.168.1.10:1337/api/"
     val retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create())

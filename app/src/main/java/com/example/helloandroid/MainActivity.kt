@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -56,7 +55,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            //val preferencesManager = remember { PreferencesManager(context = LocalContext.current) }
             val sharedPreferences: SharedPreferences = LocalContext.current.getSharedPreferences("auth", Context.MODE_PRIVATE)
             val navController = rememberNavController()
 
@@ -96,34 +94,20 @@ fun Greeting(navController: NavController, context: Context = LocalContext.curre
     val preferencesManager = remember { PreferencesManager(context = context) }
     var username by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
-    var baseUrl = "http://10.0.2.2:1337/api/"
+    var baseUrl = "http://192.168.1.10:1337/api/"
     var jwt by remember { mutableStateOf("") }
 
     jwt = preferencesManager.getData("jwt")
     Scaffold (
         topBar = {
             TopAppBar(
-                title = { Text(text = "Login") },
+                title = { Text(text = "Login Page") },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
             )
         },
-        floatingActionButton = {
-            FloatingActionButton(onClick = { /*TODO*/ }) {
-                Icon(Icons.Default.Add, contentDescription = "Add")
-            }
-        },
-        bottomBar = {
-            BottomAppBar {
-                Text(
-                    text = "QRis",
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxSize()
-                )
-            }
-        }
     ){
         innerPadding ->
         Column(
